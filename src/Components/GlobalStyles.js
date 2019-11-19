@@ -13,7 +13,10 @@ a{
 body{
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size:12px;
-    padding-top:50px;
+    width: 100%;
+    height: 100vh;
+    max-width: 100%;
+    max-height: 100%;
 }
 `;
 
