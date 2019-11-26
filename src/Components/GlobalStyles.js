@@ -1,8 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import pagination from "../../node_modules/rc-pagination/assets/index.css";
 
 const globalStyles = createGlobalStyle`
 ${reset};
+${pagination}
 a{
     text-decoration:none;
     color:inherit;
@@ -18,6 +20,7 @@ body{
     max-width: 100%;
     max-height: 100%;
 }
+
 `;
 
 export default globalStyles;
