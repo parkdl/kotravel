@@ -8,6 +8,7 @@ import Food from "Routes/Food";
 import Rooms from "Routes/Rooms";
 import Shopping from "Routes/Shopping";
 import TravelCourse from "Routes/TravelCourse";
+import Leisure from "Routes/Leisure";
 import Nav from "./Nav";
 import Main from "./Main";
 
@@ -23,6 +24,7 @@ export default () => (
       <Route path="/rooms" exact component={Rooms} />
       <Route path="/shopping" exact component={Shopping} />
       <Route path="/travelCourse" exact component={TravelCourse} />
+      <Route path="/leisure" exact component={Leisure} />
       <Redirect from="*" to="/" />
     </Switch>
   </Router>

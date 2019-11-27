@@ -1,46 +1,46 @@
 import React from "react";
 import Pagination from "rc-pagination";
 import { api } from "api";
-import TouristPresenter from "./TouristPresenter";
+import ShoppingPresenter from "./ShoppingPresenter";
 
 export default class extends React.Component {
   state = {
     pageNo: 1,
     numOfRows: 12,
     totalCount: 1,
-    tourist: null
+    shopping: null
   };
 
   componentDidMount() {
-    this.getTourist();
+    this.getShopping();
   }
 
-  getTourist = async () => {
-    const touristList = await api.get("areaBasedList", {
+  getShopping = async () => {
+    const shoppingList = await api.get("areaBasedList", {
       params: {
-        contentTypeId: 12,
+        contentTypeId: 38,
         arrange: "P",
         pageNo: this.state.pageNo,
         numOfRows: this.state.numOfRows
       }
     });
     this.setState({
-      tourist: touristList.data.response.body.items.item,
-      totalCount: touristList.data.response.body.totalCount
+      shopping: shoppingList.data.response.body.items.item,
+      totalCount: shoppingList.data.response.body.totalCount
     });
   };
 
   onChange = page => {
     this.setState({ pageNo: page }, () => {
-      this.getTourist();
+      this.getShopping();
     });
   };
 
   render() {
-    console.log(this.state.tourist);
+    console.log(this.state.shopping);
     return (
       <>
-        <TouristPresenter tourist={this.state.tourist} />
+        <ShoppingPresenter shopping={this.state.shopping} />
         <Pagination
           onChange={this.onChange}
           total={this.state.totalCount}

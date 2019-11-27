@@ -1,3 +1,3 @@
-import TouristContainer from "./TouristContainer";
+import ShoppingContainer from "./ShoppingContainer";
 
-export default TouristContainer;
+export default ShoppingContainer;

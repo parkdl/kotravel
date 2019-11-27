@@ -13,7 +13,13 @@ const TouristPresenter = ({ tourist }) => (
     {tourist && tourist.length > 0 && (
       <Section title="Tourist">
         {tourist.map(tour => (
-          <Poster key={tour.index} imageUrl={tour.firstimage2} />
+          <Poster
+            key={tour.index}
+            imageUrl={tour.firstimage}
+            title={tour.title}
+            addr={tour.addr1}
+            subAddr={tour.addr2}
+          />
         ))}
       </Section>
     )}

@@ -17,21 +17,26 @@ const Image = styled.div`
   transition: opacity 0.1s linear;
 `;
 
+const ItemContainer = styled.div``;
+
+const Title = styled.div`
+  margin: 10px 0;
+`;
+
 const Address = styled.div``;
 
-const Title = styled.div``;
-
-const SubTilte = styled.div``;
-
-const Poster = ({ imageUrl, addr1, addr2, title = false }) => (
+const Poster = ({ imageUrl, addr, subAddr, title = false }) => (
   <Container>
     <ImageContainer>
-      <Image bgUrl={imageUrl ? `${imageUrl}` : null} />
+      <Image bgUrl={imageUrl ? `${imageUrl}` : require("../assets/noimage.png")} />
     </ImageContainer>
-    <Address>
-      <Title></Title>
-      <SubTilte></SubTilte>
-    </Address>
+    <ItemContainer>
+      <Title>{title}</Title>
+      <Address>
+        {addr}
+        {subAddr}
+      </Address>
+    </ItemContainer>
   </Container>
 );
 

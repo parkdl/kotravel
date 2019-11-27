@@ -1,3 +1,3 @@
-import TouristContainer from "./TouristContainer";
+import TravelCourseContainer from "./TravelCourseContainer";
 
-export default TouristContainer;
+export default TravelCourseContainer;

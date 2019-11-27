@@ -1,3 +1,3 @@
-import TouristContainer from "./TouristContainer";
+import CulturalContainer from "./CulturalContainer";
 
-export default TouristContainer;
+export default CulturalContainer;
