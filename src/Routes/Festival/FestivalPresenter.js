@@ -14,7 +14,8 @@ const FestivalPresenter = ({ festival }) => (
       <Section title="Festival">
         {festival.map(art => (
           <Poster
-            key={art.index}
+            key={art.contentid}
+            id={art.contentid}
             imageUrl={art.firstimage}
             title={art.title}
             addr={art.addr1}

@@ -14,7 +14,8 @@ const LeisurePresenter = ({ leisure }) => (
       <Section title="Leisure">
         {leisure.map(sports => (
           <Poster
-            key={sports.index}
+            key={sports.contentid}
+            id={sports.contentid}
             imageUrl={sports.firstimage}
             title={sports.title}
             addr={sports.addr1}

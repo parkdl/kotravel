@@ -14,7 +14,8 @@ const ShoppingPresenter = ({ shopping }) => (
       <Section title="Shopping">
         {shopping.map(shop => (
           <Poster
-            key={shop.index}
+            key={shop.contentid}
+            id={shop.contentid}
             imageUrl={shop.firstimage}
             title={shop.title}
             addr={shop.addr1}

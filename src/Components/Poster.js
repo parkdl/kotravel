@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const Container = styled.div`
+const Container = styled(Link)`
   width: 22.75%;
   margin: 3%;
 `;
@@ -25,8 +26,8 @@ const Title = styled.div`
 
 const Address = styled.div``;
 
-const Poster = ({ imageUrl, addr, subAddr, title = false }) => (
-  <Container>
+const Poster = ({ id, imageUrl, addr, subAddr, title = false }) => (
+  <Container to={`cultural/${id}`}>
     <ImageContainer>
       <Image bgUrl={imageUrl ? `${imageUrl}` : require("../assets/noimage.png")} />
     </ImageContainer>

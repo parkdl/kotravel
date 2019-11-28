@@ -14,7 +14,8 @@ const RoomsPresenter = ({ rooms }) => (
       <Section title="Rooms">
         {rooms.map(room => (
           <Poster
-            key={room.index}
+            key={room.contentid}
+            id={room.contentid}
             imageUrl={room.firstimage}
             title={room.title}
             addr={room.addr1}

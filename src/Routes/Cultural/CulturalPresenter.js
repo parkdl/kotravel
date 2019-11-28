@@ -14,7 +14,8 @@ const CulturalPresenter = ({ cultural }) => (
       <Section title="Cultural">
         {cultural.map(culture => (
           <Poster
-            key={culture.index}
+            key={culture.contentid}
+            id={culture.contentid}
             imageUrl={culture.firstimage}
             title={culture.title}
             addr={culture.addr1}

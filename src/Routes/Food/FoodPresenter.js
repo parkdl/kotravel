@@ -14,7 +14,8 @@ const FoodPresenter = ({ food }) => (
       <Section title="Food">
         {food.map(eat => (
           <Poster
-            key={eat.index}
+            key={eat.contentid}
+            id={eat.contentid}
             imageUrl={eat.firstimage}
             title={eat.title}
             addr={eat.addr1}

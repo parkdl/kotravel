@@ -14,7 +14,8 @@ const TouristPresenter = ({ tourist }) => (
       <Section title="Tourist">
         {tourist.map(tour => (
           <Poster
-            key={tour.index}
+            key={tour.contentid}
+            id={tour.contentid}
             imageUrl={tour.firstimage}
             title={tour.title}
             addr={tour.addr1}
