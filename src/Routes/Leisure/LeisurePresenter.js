@@ -20,6 +20,7 @@ const LeisurePresenter = ({ leisure }) => (
             title={sports.title}
             addr={sports.addr1}
             subAddr={sports.addr2}
+            isLeisure={true}
           />
         ))}
       </Section>

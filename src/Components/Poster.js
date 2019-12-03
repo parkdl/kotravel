@@ -26,8 +26,40 @@ const Title = styled.div`
 
 const Address = styled.div``;
 
-const Poster = ({ id, imageUrl, addr, subAddr, title = false }) => (
-  <Container to={`cultural/${id}`}>
+const Poster = ({
+  id,
+  imageUrl,
+  addr,
+  subAddr,
+  title,
+  isTourist,
+  isCultural,
+  isFestival,
+  isFood,
+  isRooms,
+  isLeisure,
+  isShopping,
+  isTravel = false
+}) => (
+  <Container
+    to={
+      isTourist
+        ? `/tourist/${id}`
+        : isCultural
+        ? `/cultural/${id}`
+        : isFestival
+        ? `/festival/${id}`
+        : isFood
+        ? `/food/${id}`
+        : isRooms
+        ? `/rooms/${id}`
+        : isLeisure
+        ? `/leisure/${id}`
+        : isShopping
+        ? `/shopping/${id}`
+        : `/travelCourse/${id}`
+    }
+  >
     <ImageContainer>
       <Image bgUrl={imageUrl ? `${imageUrl}` : require("../assets/noimage.png")} />
     </ImageContainer>

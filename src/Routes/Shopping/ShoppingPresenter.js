@@ -20,6 +20,7 @@ const ShoppingPresenter = ({ shopping }) => (
             title={shop.title}
             addr={shop.addr1}
             subAddr={shop.addr2}
+            isShopping={true}
           />
         ))}
       </Section>

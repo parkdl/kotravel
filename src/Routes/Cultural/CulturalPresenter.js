@@ -20,6 +20,7 @@ const CulturalPresenter = ({ cultural }) => (
             title={culture.title}
             addr={culture.addr1}
             subAddr={culture.addr2}
+            isCultural={true}
           />
         ))}
       </Section>

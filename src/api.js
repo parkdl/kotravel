@@ -6,7 +6,6 @@ export const api = axios.create({
     ServiceKey:
       "KHfC8jhMEZeE3BBAfgva4gzrMwKd+N5JR6TuOE9YIzQcXGnifwewaPLWvv22PQGOfszIV8c8IHIj+AciqPmL1Q==",
     MobileOS: "ETC",
-    MobileApp: "KorService",
-    _type: "json"
+    MobileApp: "KorService"
   }
 });

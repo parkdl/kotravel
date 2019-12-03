@@ -20,6 +20,7 @@ const FoodPresenter = ({ food }) => (
             title={eat.title}
             addr={eat.addr1}
             subAddr={eat.addr2}
+            isFood={true}
           />
         ))}
       </Section>

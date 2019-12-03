@@ -20,6 +20,7 @@ const FestivalPresenter = ({ festival }) => (
             title={art.title}
             addr={art.addr1}
             subAddr={art.addr2}
+            isFestival={true}
           />
         ))}
       </Section>

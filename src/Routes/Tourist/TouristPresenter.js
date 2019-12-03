@@ -20,6 +20,7 @@ const TouristPresenter = ({ tourist }) => (
             title={tour.title}
             addr={tour.addr1}
             subAddr={tour.addr2}
+            isTourist={true}
           />
         ))}
       </Section>
