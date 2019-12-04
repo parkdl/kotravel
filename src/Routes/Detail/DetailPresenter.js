@@ -7,11 +7,24 @@ import parse from "html-react-parser";
 
 const Container = styled.div``;
 
-const Item = styled.div``;
-
-const Per = styled.div``;
+const Item = styled.div`
+  width: 60%;
+`;
 
 const Link = styled.a``;
+
+const ImageContainer = styled.div`
+  width: 60%;
+  height: 100vh;
+`;
+
+const Image = styled.div`
+  background-image: url(${props => props.bgImg});
+  background-size: cover;
+  background-position: center;
+  width: 50%;
+  height: 300px;
+`;
 
 const DetailPresenter = ({ loading, detailCommon, detailIntro, detailInfo, detailImage }) =>
   loading ? (
@@ -26,9 +39,19 @@ const DetailPresenter = ({ loading, detailCommon, detailIntro, detailInfo, detai
         <title>{detailCommon.title ? detailCommon.title : null} | kotravel</title>
       </Helmet>
       <Item>{detailCommon.title}</Item>
-      <Per>{detailCommon.overview ? parse(detailCommon.overview) : null}</Per>
-
+      <Item>
+        {detailCommon.addr1}
+        {detailCommon.addr2}
+      </Item>
+      <Item>{detailCommon.overview ? parse(detailCommon.overview) : null}</Item>
       <Link>{detailCommon.homepage ? parse(detailCommon.homepage) : null}</Link>
+      <ImageContainer>
+        {detailImage
+          ? detailImage.map((image, index) => (
+              <Image key={index} bgImg={image.originimgurl}></Image>
+            ))
+          : null}
+      </ImageContainer>
     </Container>
   );
 
