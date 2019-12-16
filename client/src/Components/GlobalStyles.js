@@ -17,7 +17,6 @@ body{
     font-size:12px;
     width: 100%;
     height: 100vh;
-    max-width: 100%;
     max-height: 100%;
 }
 

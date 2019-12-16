@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import DetailPresenter from "./DetailPresenter";
 import { api } from "../../api";
 
@@ -50,7 +50,8 @@ export default class extends React.Component {
         contentId: parseInt(id),
         defaultYN: "Y",
         addrinfoYN: "Y",
-        overviewYN: "Y"
+        overviewYN: "Y",
+        firstImageYN: "Y"
       }
     });
     const image = await api.get("detailImage", {
@@ -178,7 +179,7 @@ export default class extends React.Component {
     }
   };
 
-  /*getDetail = async () => {
+  getDetail = async () => {
     const {
       match: {
         params: { id }
@@ -308,10 +309,23 @@ export default class extends React.Component {
         loading: false
       });
     }
-  };*/
+  };
 
   render() {
-    const { detailCommon, detailIntro, detailInfo, detailImage, loading } = this.state;
+    const {
+      detailCommon,
+      detailIntro,
+      detailInfo,
+      detailImage,
+      loading,
+      isCultural,
+      isTourist,
+      isFestival,
+      isFood,
+      isRooms,
+      isLeisure,
+      isShopping
+    } = this.state;
     console.log(this.state);
 
     return (
@@ -321,7 +335,47 @@ export default class extends React.Component {
         detailInfo={detailInfo}
         detailImage={detailImage}
         loading={loading}
+        tourist={isTourist}
+        cultural={isCultural}
+        festival={isFestival}
+        food={isFood}
+        room={isRooms}
+        lersure={isLeisure}
+        shopping={isShopping}
       />
     );
+  }
+}*/
+
+import React from "react";
+import axios from "axios";
+import DetailPresenter from "./DetailPresenter";
+
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      Data: null
+    };
+  }
+
+  componentDidMount() {
+    this.getDetail();
+  }
+
+  getDetail = async () => {
+    const {
+      match: {
+        params: { id }
+      }
+    } = this.props;
+    const parseId = parseInt(id);
+    const detailData = await axios(`/tourist/${parseId}`);
+    this.setState({ Data: detailData.data });
+  };
+
+  render() {
+    console.log(this.props.match.params.id);
+    return <DetailPresenter detail={this.state.Data}></DetailPresenter>;
   }
 }

@@ -7,17 +7,20 @@ const Container = styled.div`
     margin-bottom: 50px;
   }
   width: 100%;
+  margin-top: 5%;
 `;
 
 const Title = styled.span`
-  font-size: 14px;
+  font-size: 30px;
   font-weight: 600;
+  padding-left: 5%;
 `;
 
 const Item = styled.div`
   width: 100%;
   max-width: 1200px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 0 auto;
 `;

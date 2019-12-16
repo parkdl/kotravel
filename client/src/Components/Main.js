@@ -22,22 +22,6 @@ const Content = styled.div`
   margin: 0 auto;
 `;
 
-const Nav = styled.button`
-  &:hover {
-    background-color: gray;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    font-size: 70px;
-  }
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 50px;
-  color: white;
-  height: 40%;
-  width: 50%;
-`;
-
 export default class extends React.Component {
   state = {
     number: 3,
@@ -62,11 +46,7 @@ export default class extends React.Component {
     const { number } = this.state;
     return (
       <Container bgImage={require(`../assets/${number}.jpg`)}>
-        <Content>
-          <Nav as="a" href="/nav">
-            여행지 찾아보기
-          </Nav>
-        </Content>
+        <Content></Content>
       </Container>
     );
   }
