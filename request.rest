@@ -1,1 +1,1 @@
-GET http://localhost:8080/tourist/favicon.ico
+GET http://localhost:7000/search?keyword=부산&page=1

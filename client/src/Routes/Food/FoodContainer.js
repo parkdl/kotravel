@@ -1,54 +1,42 @@
 import React from "react";
-import Pagination from "rc-pagination";
-import { api } from "api";
-
 import FoodPresenter from "./FoodPresenter";
+import axios from "axios";
 
 export default class extends React.Component {
-  state = {
-    pageNo: 1,
-    numOfRows: 12,
-    totalCount: 1,
-    food: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      food: [],
+      pager: {}
+    };
+  }
 
   componentDidMount() {
     this.getFood();
   }
 
-  getFood = async () => {
-    const foodList = await api.get("areaBasedList", {
-      params: {
-        contentTypeId: 39,
-        arrange: "P",
-        pageNo: this.state.pageNo,
-        numOfRows: this.state.numOfRows
-      }
-    });
-    this.setState({
-      food: foodList.data.response.body.items.item,
-      totalCount: foodList.data.response.body.totalCount
-    });
-  };
+  componentDidUpdate() {
+    const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get("page"));
+    if (this.state.pager.current !== page) this.getFood();
+  }
 
-  onChange = page => {
-    this.setState({ pageNo: page }, () => {
-      this.getFood();
-    });
+  getFood = async () => {
+    const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get("page")) || 1;
+
+    if (page !== this.state.pager.currentPage) {
+      const foodList = await axios(`/food?page=${page}`);
+
+      this.setState({
+        food: foodList.data.pageOfItems,
+        pager: foodList.data.pager
+      });
+    }
   };
 
   render() {
     console.log(this.state.food);
-    return (
-      <>
-        <FoodPresenter food={this.state.food} />
-        <Pagination
-          onChange={this.onChange}
-          total={this.state.totalCount}
-          current={this.state.pageNo}
-          pageSize={this.state.numOfRows}
-        ></Pagination>
-      </>
-    );
+    return <FoodPresenter food={this.state.food} pager={this.state.pager} />;
   }
 }

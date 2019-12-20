@@ -1,53 +1,42 @@
 import React from "react";
-import Pagination from "rc-pagination";
-import { api } from "api";
 import TravelCoursePresenter from "./TravelCoursePresenter";
+import axios from "axios";
 
 export default class extends React.Component {
-  state = {
-    pageNo: 1,
-    numOfRows: 12,
-    totalCount: 1,
-    travelCourse: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      travelCourse: [],
+      pager: {}
+    };
+  }
 
   componentDidMount() {
     this.getTravelCourse();
   }
 
-  getTravelCourse = async () => {
-    const travelCourseList = await api.get("areaBasedList", {
-      params: {
-        contentTypeId: 25,
-        arrange: "P",
-        pageNo: this.state.pageNo,
-        numOfRows: this.state.numOfRows
-      }
-    });
-    this.setState({
-      travelCourse: travelCourseList.data.response.body.items.item,
-      totalCount: travelCourseList.data.response.body.totalCount
-    });
-  };
+  componentDidUpdate() {
+    const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get("page"));
+    if (this.state.pager.current !== page) this.getTravelCourse();
+  }
 
-  onChange = page => {
-    this.setState({ pageNo: page }, () => {
-      this.getTravelCourse();
-    });
+  getTravelCourse = async () => {
+    const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get("page")) || 1;
+
+    if (page !== this.state.pager.currentPage) {
+      const travelCourseList = await axios(`/travelCourse?page=${page}`);
+
+      this.setState({
+        travelCourse: travelCourseList.data.pageOfItems,
+        pager: travelCourseList.data.pager
+      });
+    }
   };
 
   render() {
     console.log(this.state.travelCourse);
-    return (
-      <>
-        <TravelCoursePresenter travelCourse={this.state.travelCourse} />
-        <Pagination
-          onChange={this.onChange}
-          total={this.state.totalCount}
-          current={this.state.pageNo}
-          pageSize={this.state.numOfRows}
-        ></Pagination>
-      </>
-    );
+    return <TravelCoursePresenter travelCourse={this.state.travelCourse} pager={this.state.pager} />;
   }
 }

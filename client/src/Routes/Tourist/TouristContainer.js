@@ -15,16 +15,18 @@ export default class extends React.Component {
     this.getTourist();
   }
 
-  /*componentDidUpdate() {
+  componentDidUpdate() {
     const params = new URLSearchParams(window.location.search);
     const page = parseInt(params.get("page"));
-    if(this.state.pager.current !== page)
-    this.getTourist();
-  }*/
+    if (this.state.pager.current !== page) this.getTourist();
+  }
 
   getTourist = async () => {
     const params = new URLSearchParams(window.location.search);
+    console.log(window.location.search);
+    console.log(params);
     const page = parseInt(params.get("page")) || 1;
+    console.log(page);
 
     if (page !== this.state.pager.currentPage) {
       const touristList = await axios(`/tourist?page=${page}`);

@@ -1,206 +1,60 @@
+import axios from "axios";
 import { api } from "../api";
 import { pagination } from "../middleWare";
-import axios from "axios";
 import { detailCommon, detailImage, detailIntro, detailInfo } from "../assets/detailData";
 
-export const getTourist = async (req, res) => {
-  const page = parseInt(req.query.page);
-
-  await api
-    .get("areaBasedList", {
-      params: {
-        contentTypeId: type,
-        arrange: "P",
-        pageNo: page,
-        numOfRows: 12
-      }
-    })
-    .then(response => {
-      const touristList = response.data.response.body.items.item;
-      const totalCount = response.data.response.body.totalCount;
-      const pageSize = response.data.response.body.numOfRows;
-
-      const pager = pagination(totalCount, page, pageSize);
-
-      const pageOfItems = touristList.slice(0, 12);
-
-      return res.send({ pager, pageOfItems });
-    });
+const item = {
+  typeNum: [12, 14, 15, 25, 28, 32, 38, 39],
+  path: [
+    "/tourist",
+    "/cultural",
+    "/festival",
+    "/travelCourse",
+    "/leisure",
+    "/rooms",
+    "/shopping",
+    "/food"
+  ],
+  pathDetail: [
+    "/tourist/",
+    "/cultural/",
+    "/festival/",
+    "/travelCourse/",
+    "/leisure/",
+    "/rooms/",
+    "/shopping/",
+    "/food/"
+  ]
 };
 
-export const getCultural = async (req, res) => {
+export const getBaseList = async (req, res) => {
+  const pathname = req._parsedUrl.pathname;
   const page = parseInt(req.query.page);
 
-  await api
-    .get("areaBasedList", {
-      params: {
-        contentTypeId: 14,
-        arrange: "P",
-        pageNo: page,
-        numOfRows: 12
-      }
-    })
-    .then(response => {
-      const culturalList = response.data.response.body.items.item;
-      const totalCount = response.data.response.body.totalCount;
-      const pageSize = response.data.response.body.numOfRows;
+  for (var i = 0; i < item.path.length; i++) {
+    if (item.path[i] === pathname) {
+      await api
+        .get("areaBasedList", {
+          params: {
+            contentTypeId: item.typeNum[i],
+            arrange: "P",
+            pageNo: page,
+            numOfRows: 12
+          }
+        })
+        .then(response => {
+          const baseList = response.data.response.body.items.item;
+          const totalCount = response.data.response.body.totalCount;
+          const pageSize = response.data.response.body.numOfRows;
 
-      const pager = pagination(totalCount, page, pageSize);
+          const pager = pagination(totalCount, page, pageSize);
 
-      const pageOfItems = culturalList.slice(0, 12);
+          const pageOfItems = baseList.slice(0, 12);
 
-      return res.send({ pager, pageOfItems });
-    });
-};
-
-export const getFestival = async (req, res) => {
-  const page = parseInt(req.query.page);
-
-  await api
-    .get("areaBasedList", {
-      params: {
-        contentTypeId: 15,
-        arrange: "P",
-        pageNo: page,
-        numOfRows: 12
-      }
-    })
-    .then(response => {
-      const festivalList = response.data.response.body.items.item;
-      const totalCount = response.data.response.body.totalCount;
-      const pageSize = response.data.response.body.numOfRows;
-
-      const pager = pagination(totalCount, page, pageSize);
-
-      const pageOfItems = festivalList.slice(0, 12);
-
-      return res.send({ pager, pageOfItems });
-    });
-};
-
-export const getFood = async (req, res) => {
-  const page = parseInt(req.query.page);
-
-  await api
-    .get("areaBasedList", {
-      params: {
-        contentTypeId: 39,
-        arrange: "P",
-        pageNo: page,
-        numOfRows: 12
-      }
-    })
-    .then(response => {
-      const foodList = response.data.response.body.items.item;
-      const totalCount = response.data.response.body.totalCount;
-      const pageSize = response.data.response.body.numOfRows;
-
-      const pager = pagination(totalCount, page, pageSize);
-
-      const pageOfItems = foodList.slice(0, 12);
-
-      return res.send({ pager, pageOfItems });
-    });
-};
-
-export const getRooms = async (req, res) => {
-  const page = parseInt(req.query.page);
-
-  await api
-    .get("areaBasedList", {
-      params: {
-        contentTypeId: 32,
-        arrange: "P",
-        pageNo: page,
-        numOfRows: 12
-      }
-    })
-    .then(response => {
-      const roomsList = response.data.response.body.items.item;
-      const totalCount = response.data.response.body.totalCount;
-      const pageSize = response.data.response.body.numOfRows;
-
-      const pager = pagination(totalCount, page, pageSize);
-
-      const pageOfItems = roomsList.slice(0, 12);
-
-      return res.send({ pager, pageOfItems });
-    });
-};
-
-export const getShopping = async (req, res) => {
-  const page = parseInt(req.query.page);
-
-  await api
-    .get("areaBasedList", {
-      params: {
-        contentTypeId: 38,
-        arrange: "P",
-        pageNo: page,
-        numOfRows: 12
-      }
-    })
-    .then(response => {
-      const shoppingList = response.data.response.body.items.item;
-      const totalCount = response.data.response.body.totalCount;
-      const pageSize = response.data.response.body.numOfRows;
-
-      const pager = pagination(totalCount, page, pageSize);
-
-      const pageOfItems = shoppingList.slice(0, 12);
-
-      return res.send({ pager, pageOfItems });
-    });
-};
-
-export const getTravelCourse = async (req, res) => {
-  const page = parseInt(req.query.page);
-
-  await api
-    .get("areaBasedList", {
-      params: {
-        contentTypeId: 25,
-        arrange: "P",
-        pageNo: page,
-        numOfRows: 12
-      }
-    })
-    .then(response => {
-      const travelCourseList = response.data.response.body.items.item;
-      const totalCount = response.data.response.body.totalCount;
-      const pageSize = response.data.response.body.numOfRows;
-
-      const pager = pagination(totalCount, page, pageSize);
-
-      const pageOfItems = travelCourseList.slice(0, 12);
-
-      return res.send({ pager, pageOfItems });
-    });
-};
-
-export const getLeisure = async (req, res) => {
-  const page = parseInt(req.query.page);
-
-  await api
-    .get("areaBasedList", {
-      params: {
-        contentTypeId: 28,
-        arrange: "P",
-        pageNo: page,
-        numOfRows: 12
-      }
-    })
-    .then(response => {
-      const leisureList = response.data.response.body.items.item;
-      const totalCount = response.data.response.body.totalCount;
-      const pageSize = response.data.response.body.numOfRows;
-
-      const pager = pagination(totalCount, page, pageSize);
-
-      const pageOfItems = leisureList.slice(0, 12);
-
-      return res.send({ pager, pageOfItems });
-    });
+          return res.send({ pager, pageOfItems });
+        });
+    }
+  }
 };
 
 export const getDetailAll = (req, res) => {
@@ -217,7 +71,34 @@ export const getDetailAll = (req, res) => {
         const image = imageRes.data.response.body.items.item;
         const info = infoRes.data.response.body.items.item;
         const intro = introRes.data.response.body.items.item;
+
         return res.send({ common, image, info, intro });
       })
     );
+};
+
+export const getSearchData = async (req, res) => {
+  const keyword = req.query.keyword;
+  const page = parseInt(req.query.page);
+
+  await api
+    .get("searchKeyword", {
+      params: {
+        keyword: keyword,
+        pageNo: page,
+        numOfRows: 12
+      }
+    })
+    .then(response => {
+      const searchData = response.data.response.body.items.item;
+      const totalCount = response.data.response.body.totalCount;
+      const pageSize = response.data.response.body.numOfRows;
+
+      const pager = pagination(totalCount, page, pageSize);
+
+      const pageOfItems = searchData.slice(0, 12);
+      console.log(response.data.response.body);
+
+      return res.send({ pageOfItems, pager });
+    });
 };

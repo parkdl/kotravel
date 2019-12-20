@@ -1,53 +1,42 @@
 import React from "react";
-import Pagination from "rc-pagination";
-import { api } from "api";
 import LeisurePresenter from "./LeisurePresenter";
+import axios from "axios";
 
 export default class extends React.Component {
-  state = {
-    pageNo: 1,
-    numOfRows: 12,
-    totalCount: 1,
-    leisure: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      leisure: [],
+      pager: {}
+    };
+  }
 
   componentDidMount() {
     this.getLeisure();
   }
 
-  getLeisure = async () => {
-    const leisureList = await api.get("areaBasedList", {
-      params: {
-        contentTypeId: 28,
-        arrange: "P",
-        pageNo: this.state.pageNo,
-        numOfRows: this.state.numOfRows
-      }
-    });
-    this.setState({
-      leisure: leisureList.data.response.body.items.item,
-      totalCount: leisureList.data.response.body.totalCount
-    });
-  };
+  componentDidUpdate() {
+    const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get("page"));
+    if (this.state.pager.current !== page) this.getLeisure();
+  }
 
-  onChange = page => {
-    this.setState({ pageNo: page }, () => {
-      this.getLeisure();
-    });
+  getLeisure = async () => {
+    const params = new URLSearchParams(window.location.search);
+    const page = parseInt(params.get("page")) || 1;
+
+    if (page !== this.state.pager.currentPage) {
+      const leisureList = await axios(`/leisure?page=${page}`);
+
+      this.setState({
+        leisure: leisureList.data.pageOfItems,
+        pager: leisureList.data.pager
+      });
+    }
   };
 
   render() {
     console.log(this.state.leisure);
-    return (
-      <>
-        <LeisurePresenter leisure={this.state.leisure} />
-        <Pagination
-          onChange={this.onChange}
-          total={this.state.totalCount}
-          current={this.state.pageNo}
-          pageSize={this.state.numOfRows}
-        ></Pagination>
-      </>
-    );
+    return <LeisurePresenter leisure={this.state.leisure} pager={this.state.pager} />;
   }
 }

@@ -40,26 +40,26 @@ export default withRouter(({ location: { pathname } }) => (
       <Item current={pathname === "/tourist?page=1"}>
         <SLink to="/tourist?page=1">Tourist</SLink>
       </Item>
-      <Item current={pathname === "/cultural"}>
-        <SLink to="/cultural">Cultural</SLink>
+      <Item current={pathname === "/cultural?page=1"}>
+        <SLink to="/cultural?page=1">Cultural</SLink>
       </Item>
-      <Item current={pathname === "/festival"}>
-        <SLink to="/festival">Festival</SLink>
+      <Item current={pathname === "/festival?page=1"}>
+        <SLink to="/festival?page=1">Festival</SLink>
       </Item>
-      <Item current={pathname === "/travelCourse"}>
-        <SLink to="/travelCourse">TravelCourse</SLink>
+      <Item current={pathname === "/travelCourse?page=1"}>
+        <SLink to="/travelCourse?page=1">TravelCourse</SLink>
       </Item>
-      <Item current={pathname === "/leisure"}>
-        <SLink to="/leisure">Leisure</SLink>
+      <Item current={pathname === "/leisure?page=1"}>
+        <SLink to="/leisure?page=1">Leisure</SLink>
       </Item>
-      <Item current={pathname === "/rooms"}>
-        <SLink to="/rooms">Rooms</SLink>
+      <Item current={pathname === "/rooms?page=1"}>
+        <SLink to="/rooms?page=1">Rooms</SLink>
       </Item>
-      <Item current={pathname === "/shopping"}>
-        <SLink to="/shopping">Shopping</SLink>
+      <Item current={pathname === "/shopping?page=1"}>
+        <SLink to="/shopping?page=1">Shopping</SLink>
       </Item>
-      <Item current={pathname === "/food"}>
-        <SLink to="/food">Food</SLink>
+      <Item current={pathname === "/food?page=1"}>
+        <SLink to="/food?page=1">Food</SLink>
       </Item>
     </List>
   </Header>
