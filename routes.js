@@ -2,6 +2,9 @@ const HOME = "/";
 
 const SEARCH = "/search";
 
+const JOIN = "/join";
+const LOGIN = "/login";
+
 // List
 const TOURIST = "/tourist";
 const TOURIST_DETAIL = "/tourist/:id";
@@ -29,6 +32,8 @@ const LEISURE_DETAIL = "/leisure/:id";
 
 const routes = {
   home: HOME,
+  join: JOIN,
+  login: LOGIN,
   search: SEARCH,
   tourist: TOURIST,
   touristDetail: id => {

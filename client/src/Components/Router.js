@@ -15,6 +15,10 @@ import TravelCourse from "Routes/TravelCourse";
 import Leisure from "Routes/Leisure";
 import Search from "Routes/Search";
 
+import Board from "../Components/Board";
+
+import Join from "Routes/Join";
+
 import TouristDetail from "Routes/Detail/TouristDetail";
 import CulturalDetail from "Routes/Detail/CulturalDetail";
 import FestivalDetail from "Routes/Detail/FestivalDetail";
@@ -31,6 +35,14 @@ export default () => (
       <SearchForm />
       <Switch>
         <Route path="/" exact component={Main} />
+
+        <Route path="/join" exact component={Join} />
+
+        <Route path="/search" exact component={Search} />
+
+        <Route path="/board" exact component={Board} />
+
+        {/* category */}
         <Route path="/tourist" exact component={Tourist} />
         <Route path="/tourist/:id" exact component={TouristDetail} />
         <Route path="/cultural" exact component={Cultural} />
@@ -48,7 +60,6 @@ export default () => (
         <Route path="/leisure" exact component={Leisure} />
         <Route path="/leisure/:id" exact component={LeisureDetail} />
 
-        <Route path="/search" exact component={Search} />
         <Redirect to="*" from="/" />
       </Switch>
     </>

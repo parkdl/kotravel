@@ -1,10 +1,15 @@
 import express from "express";
 import routes from "../routes";
-import { getBaseList, getDetailAll, getSearchData } from "../controllers/listController";
+import { getBaseList, getDetailAll, getSearchData, postJoin } from "../controllers/listController";
 
 const listRouter = express.Router();
 
 listRouter.get(routes.home);
+
+listRouter.post(routes.join, postJoin);
+
+listRouter.get(routes.login);
+listRouter.post(routes.login);
 
 listRouter.get(routes.search, getSearchData);
 

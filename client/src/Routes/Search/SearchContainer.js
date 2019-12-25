@@ -45,7 +45,7 @@ export default class extends React.Component {
 
   render() {
     const { searchItem, loading, pager, searchTerm } = this.state;
-
+    console.log(searchItem);
     return <SearchPresenter term={searchTerm} data={searchItem} loading={loading} pager={pager} />;
   }
 }

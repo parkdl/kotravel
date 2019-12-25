@@ -45,3 +45,8 @@ export const pagination = (totalItems, currentPage, pageSize, maxPages) => {
     pages: pages
   };
 };
+
+export const corsOptions = {
+  origin: "http://localhost:3000",
+  credentials: true
+};

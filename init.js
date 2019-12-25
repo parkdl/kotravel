@@ -1,5 +1,11 @@
+import "./db";
 import app from "./app";
+import dotenv from "dotenv";
 
-app.listen(7000, function() {
-  console.log("Connected add");
-});
+dotenv.config();
+
+const PORT = process.env.PORT || 7000;
+
+const handleListening = () => console.log(`✅  Listening on: http://localhost:${PORT}`);
+
+app.listen(PORT, handleListening);

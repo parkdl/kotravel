@@ -2,6 +2,8 @@ import axios from "axios";
 import { api } from "../api";
 import { pagination } from "../middleWare";
 import { detailCommon, detailImage, detailIntro, detailInfo } from "../assets/detailData";
+import routes from "../routes";
+import User from "../models/User";
 
 const item = {
   typeNum: [12, 14, 15, 25, 28, 32, 38, 39],
@@ -101,4 +103,28 @@ export const getSearchData = async (req, res) => {
 
       return res.send({ pageOfItems, pager });
     });
+};
+
+export const postJoin = async (req, res) => {
+  const {
+    body: {
+      data: { name, email, password1, password2 }
+    }
+  } = req;
+  console.log(req.body);
+  if (password1 !== password2) {
+    res.status(400);
+    res.redirect(routes.join);
+  } else {
+    try {
+      const user = await User({
+        name,
+        email
+      });
+      await User.register(user, password1);
+    } catch (error) {
+      console.log(error);
+    }
+    res.redirect(routes.home);
+  }
 };
