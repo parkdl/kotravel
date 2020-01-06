@@ -7,15 +7,14 @@ const Header = styled.div`
   flex-direction: row;
   width: 100%;
   margin: 10px auto;
+  justify-content: space-around;
 `;
 
 const Title = styled.div`
-  padding-left: 2%;
   font-size: 25px;
 `;
 
 const List = styled.ul`
-  margin-left: 10%;
   width: 66%;
   display: flex;
   flex-direction: row;
@@ -60,9 +59,6 @@ export default withRouter(({ location: { pathname } }) => (
       </Item>
       <Item current={pathname === "/food?page=1"}>
         <SLink to="/food?page=1">Food</SLink>
-      </Item>
-      <Item current={pathname === "/join"}>
-        <SLink to="/join">Join</SLink>
       </Item>
     </List>
   </Header>

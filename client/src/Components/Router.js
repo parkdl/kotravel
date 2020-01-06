@@ -1,9 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
-import Main from "./Main";
+import Main from "Routes/Main";
 import Header from "../Components/Header";
-import SearchForm from "../Components/SearchForm";
+/*import SearchForm from "../Components/SearchForm";
+import Login from "Routes/Login";
+import Board from "../Components/Board";
+import Authenticate from "./Authenticate";
+*/
 
 import Tourist from "Routes/Tourist";
 import Cultural from "Routes/Cultural";
@@ -14,8 +18,6 @@ import Shopping from "Routes/Shopping";
 import TravelCourse from "Routes/TravelCourse";
 import Leisure from "Routes/Leisure";
 import Search from "Routes/Search";
-
-import Board from "../Components/Board";
 
 import Join from "Routes/Join";
 
@@ -32,15 +34,13 @@ export default () => (
   <Router>
     <>
       <Header />
-      <SearchForm />
+
       <Switch>
         <Route path="/" exact component={Main} />
 
         <Route path="/join" exact component={Join} />
 
         <Route path="/search" exact component={Search} />
-
-        <Route path="/board" exact component={Board} />
 
         {/* category */}
         <Route path="/tourist" exact component={Tourist} />
@@ -60,7 +60,7 @@ export default () => (
         <Route path="/leisure" exact component={Leisure} />
         <Route path="/leisure/:id" exact component={LeisureDetail} />
 
-        <Redirect to="*" from="/" />
+        <Redirect from="*" to="/" />
       </Switch>
     </>
   </Router>

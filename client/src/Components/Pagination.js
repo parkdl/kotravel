@@ -10,7 +10,7 @@ const Page = styled.li``;
 
 const PageItem = styled(Link)``;
 
-const Pagination = () => (
+const Pagination = pager => (
   <PageContainer>
     {pager.pages && pager.pages.length && (
       <Paging>

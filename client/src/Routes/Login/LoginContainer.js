@@ -1,16 +1,15 @@
 import React from "react";
-import JoinPresenter from "./JoinPresenter";
-import axios from "axios";
+import LoginPresenter from "./LoginPresenter";
+
 import { Redirect } from "react-router-dom";
+import axios from "axios";
 
 export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: null,
       email: null,
       password1: null,
-      password2: null,
       redirectTo: null
     };
     this.handleChange = this.handleChange.bind(this);
@@ -27,29 +26,33 @@ export default class extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     axios
-      .post("/join", {
-        name: this.state.name,
+      .post("/login", {
         email: this.state.email,
-        password1: this.state.password1,
-        password2: this.state.password2
+        password1: this.state.password1
       })
       .then(res => {
         console.log(res);
-        if (!res.data.error) {
-          console.log("good");
+        if (res.status === 200) {
           this.setState({
+            loggedIn: true,
+            user: res.data.user,
             redirectTo: res.data.redirectTo
           });
         } else {
-          console.log("duplicate");
+          this.setState({
+            redirectTo: res.data.redirectTo
+          });
         }
       });
   };
 
   render() {
-    if (this.state.redirectTo) {
-      return <Redirect to={{ pathname: this.state.redirectTo }} />;
+    const { redirectTo, loggedIn, user } = this.state;
+    console.log(redirectTo, loggedIn, user);
+    if (redirectTo) {
+      return <Redirect to={{ pathname: redirectTo }} loggedIn={loggedIn} user={user} />;
+    } else {
+      return <LoginPresenter handleSubmit={this.handleSubmit} handleChange={this.handleChange} />;
     }
-    return <JoinPresenter handleSubmit={this.handleSubmit} handleChange={this.handleChange} />;
   }
 }
