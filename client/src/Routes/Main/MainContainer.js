@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import MainSlider from "./MainSlider";
-import Category from "./Category";
+
+import { Category } from "./Category";
+import Carousel from "../../Components/Carousel/Carousel";
 
 const Container = styled.div`
   max-width: 1080px;
@@ -9,11 +10,19 @@ const Container = styled.div`
   margin: 20px auto;
 `;
 
-export default () => (
-  <Container>
-    <>
-      <MainSlider />
-      <Category />
-    </>
-  </Container>
-);
+export default class extends React.Component {
+  render() {
+    const {
+      match: { path: pathName }
+    } = this.props;
+    console.log(pathName);
+    return (
+      <Container>
+        <>
+          <Carousel />
+          <Category pathName={pathName} />
+        </>
+      </Container>
+    );
+  }
+}

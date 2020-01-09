@@ -36,11 +36,12 @@ export default () => (
       <Header />
 
       <Switch>
-        <Route path="/" exact component={Main} />
-
         <Route path="/join" exact component={Join} />
 
         <Route path="/search" exact component={Search} />
+
+        {/* KorService */}
+        <Route path="/" exact component={Main} />
 
         {/* category */}
         <Route path="/tourist" exact component={Tourist} />
@@ -59,6 +60,11 @@ export default () => (
         <Route path="/travelCourse/:id" exact component={TravelCourseDetail} />
         <Route path="/leisure" exact component={Leisure} />
         <Route path="/leisure/:id" exact component={LeisureDetail} />
+
+        {/* EngService */}
+        <Route path="/eng" exact component={Main} />
+        <Route path="/eng/tourist" exact component={Tourist} />
+        <Route path="/eng/tourist/:id" exact component={TouristDetail} />
 
         <Redirect from="*" to="/" />
       </Switch>
