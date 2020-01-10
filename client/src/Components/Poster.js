@@ -28,6 +28,7 @@ const Address = styled.div``;
 
 const Poster = ({
   id,
+  path,
   imageUrl,
   addr,
   subAddr,
@@ -39,25 +40,27 @@ const Poster = ({
   isRooms,
   isLeisure,
   isShopping,
-  isTravel = false
+  isTraffic = false
 }) => (
   <Container
     to={
       isTourist
-        ? `/tourist/${id}`
+        ? `${path}/${id}`
         : isCultural
-        ? `/cultural/${id}`
+        ? `${path}/${id}`
         : isFestival
-        ? `/festival/${id}`
+        ? `${path}/${id}`
         : isFood
-        ? `/food/${id}`
+        ? `${path}/${id}`
         : isRooms
-        ? `/rooms/${id}`
+        ? `${path}/${id}`
         : isLeisure
-        ? `/leisure/${id}`
+        ? `${path}/${id}`
         : isShopping
-        ? `/shopping/${id}`
-        : `/travelCourse/${id}`
+        ? `${path}/${id}`
+        : isTraffic
+        ? `${path}/${id}`
+        : `${path}/${id}`
     }
   >
     <ImageContainer>

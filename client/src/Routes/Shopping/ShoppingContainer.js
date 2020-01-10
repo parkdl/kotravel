@@ -24,9 +24,10 @@ export default class extends React.Component {
   getShopping = async () => {
     const params = new URLSearchParams(window.location.search);
     const page = parseInt(params.get("page")) || 1;
+    const path = this.props.match.path;
 
     if (page !== this.state.pager.currentPage) {
-      const shoppingList = await axios(`/shopping?page=${page}`);
+      const shoppingList = await axios(`${path}?page=${page}`);
 
       this.setState({
         shopping: shoppingList.data.pageOfItems,

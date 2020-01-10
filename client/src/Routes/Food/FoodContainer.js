@@ -24,9 +24,10 @@ export default class extends React.Component {
   getFood = async () => {
     const params = new URLSearchParams(window.location.search);
     const page = parseInt(params.get("page")) || 1;
+    const path = this.props.match.path;
 
     if (page !== this.state.pager.currentPage) {
-      const foodList = await axios(`/food?page=${page}`);
+      const foodList = await axios(`${path}?page=${page}`);
 
       this.setState({
         food: foodList.data.pageOfItems,

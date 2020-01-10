@@ -4,8 +4,10 @@ const SEARCH = "/search";
 
 const JOIN = "/join";
 const LOGIN = "/login";
+const LOGOUT = "/logout";
+const USER = "/user";
 
-// List
+// Category
 const TOURIST = "/tourist";
 const TOURIST_DETAIL = "/tourist/:id";
 
@@ -30,11 +32,34 @@ const TRAVELCOURSE_DETAIL = "/travelCourse/:id";
 const LEISURE = "/leisure";
 const LEISURE_DETAIL = "/leisure/:id";
 
+const TRAFFIC = "/traffic";
+const TRAFFIC_DETAIL = "/traffic/:id";
+
+//Multi Language
+const KOREAN = "/kor";
+const ENGLISH = "/eng";
+const SPANISH = "/spn";
+const JAPANASE = "/jpn";
+const RUSSIAN = "/rus";
+const FRANCE = "/fre";
+const GERMANY = "/ger";
+const CHINESE = "/chi";
+
 const routes = {
   home: HOME,
   join: JOIN,
+  user: USER,
   login: LOGIN,
+  logout: LOGOUT,
   search: SEARCH,
+  korean: KOREAN,
+  english: ENGLISH,
+  spanish: SPANISH,
+  japanase: JAPANASE,
+  russian: RUSSIAN,
+  france: FRANCE,
+  germany: GERMANY,
+  chinese: CHINESE,
   tourist: TOURIST,
   touristDetail: id => {
     if (id) {
@@ -90,6 +115,13 @@ const routes = {
       return `/leisure/${id}`;
     }
     return LEISURE_DETAIL;
+  },
+  traffic: TRAFFIC,
+  trafficDetail: id => {
+    if (id) {
+      return `/traffic/${id}`;
+    }
+    return TRAFFIC_DETAIL;
   }
 };
 

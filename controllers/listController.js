@@ -1,8 +1,8 @@
 import axios from "axios";
 import { api } from "../api";
 import { pagination } from "../middleWare";
-import { detailCommon, detailImage, detailIntro, detailInfo } from "../assets/detailData";
-import routes from "../routes";
+import { detailCommon, detailImage, detailIntro, detailInfo } from "../assets/detail/detailData";
+import passport from "passport";
 import User from "../models/User";
 
 const item = {
@@ -107,14 +107,12 @@ export const getSearchData = async (req, res) => {
 
 export const postJoin = async (req, res) => {
   const {
-    body: {
-      data: { name, email, password1, password2 }
-    }
+    body: { name, email, password1, password2 }
   } = req;
   console.log(req.body);
+
   if (password1 !== password2) {
-    res.status(400);
-    res.redirect(routes.join);
+    return res.send({ error: "Sorry, it's diffrent password" });
   } else {
     try {
       const user = await User({
@@ -122,9 +120,33 @@ export const postJoin = async (req, res) => {
         email
       });
       await User.register(user, password1);
+      return res.send({ redirectTo: "/login", user });
     } catch (error) {
       console.log(error);
     }
-    res.redirect(routes.home);
   }
+};
+
+export const postLogin =
+  (passport.authenticate("local", {
+    failureRedirect: (req, res) => res.json({ redirectTo: "/login" })
+  }),
+  (req, res) => {
+    console.log(req.user);
+    const user = req.user;
+    const copyUser = Object.assign({}, user);
+    res.json({ user: copyUser });
+  });
+
+export const getUser = (req, res, next) => {
+  if (req.user) {
+    return res.json({ user: req.user });
+  } else {
+    return res.json({ user: null });
+  }
+};
+
+export const logout = (req, res) => {
+  req.logout();
+  res.json({ redirectTo: "/" });
 };

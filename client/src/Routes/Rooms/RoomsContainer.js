@@ -24,9 +24,10 @@ export default class extends React.Component {
   getRooms = async () => {
     const params = new URLSearchParams(window.location.search);
     const page = parseInt(params.get("page")) || 1;
+    const path = this.props.match.path;
 
     if (page !== this.state.pager.currentPage) {
-      const roomsList = await axios(`/rooms?page=${page}`);
+      const roomsList = await axios(`${path}?page=${page}`);
 
       this.setState({
         rooms: roomsList.data.pageOfItems,

@@ -13,7 +13,7 @@ const Container = styled.div`
   height: 100vh;
 `;
 
-const DetailPresenter = ({ common, image, info, intro, loading, kor }) =>
+const DetailPresenter = ({ common, image, info, intro, loading }) =>
   loading ? (
     <Container>
       <Helmet>

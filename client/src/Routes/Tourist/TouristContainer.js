@@ -23,13 +23,11 @@ export default class extends React.Component {
 
   getTourist = async () => {
     const params = new URLSearchParams(window.location.search);
-    console.log(window.location.search);
-    console.log(params);
     const page = parseInt(params.get("page")) || 1;
-    console.log(page);
+    const path = this.props.match.path;
 
     if (page !== this.state.pager.currentPage) {
-      const touristList = await axios(`/tourist?page=${page}`);
+      const touristList = await axios(`${path}?page=${page}`);
 
       this.setState({
         tourist: touristList.data.pageOfItems,
@@ -39,7 +37,13 @@ export default class extends React.Component {
   };
 
   render() {
-    console.log(this.state.tourist);
-    return <TouristPresenter tourist={this.state.tourist} pager={this.state.pager} />;
+    console.log(this.props);
+    return (
+      <TouristPresenter
+        tourist={this.state.tourist}
+        pager={this.state.pager}
+        path={this.props.match.path}
+      />
+    );
   }
 }

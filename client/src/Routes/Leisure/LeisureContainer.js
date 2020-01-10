@@ -24,9 +24,10 @@ export default class extends React.Component {
   getLeisure = async () => {
     const params = new URLSearchParams(window.location.search);
     const page = parseInt(params.get("page")) || 1;
+    const path = this.props.match.path;
 
     if (page !== this.state.pager.currentPage) {
-      const leisureList = await axios(`/leisure?page=${page}`);
+      const leisureList = await axios(`${path}?page=${page}`);
 
       this.setState({
         leisure: leisureList.data.pageOfItems,

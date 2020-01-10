@@ -1,6 +1,6 @@
-import { api } from "../api";
+import { spnApi } from "../../api";
 
-const typeNum = [12, 14, 15, 25, 28, 32, 38, 39];
+const typeNum = [76, 78, 85, 75, 80, 79, 82, 77];
 
 const path = [
   "/tourist/",
@@ -18,7 +18,7 @@ export const detailCommon = async req => {
     params: { id }
   } = req;
   const parsedId = parseInt(id);
-  return await api.get("detailCommon", {
+  return await spnApi.get("detailCommon", {
     params: {
       contentId: parsedId,
       defaultYN: "Y",
@@ -34,7 +34,7 @@ export const detailImage = async req => {
     params: { id }
   } = req;
   const parsedId = parseInt(id);
-  return await api.get("detailImage", {
+  return await spnApi.get("detailImage", {
     params: {
       contentId: parsedId,
       imageYN: "Y"
@@ -53,7 +53,7 @@ export const detailInfo = async req => {
       const pathname = req._parsedUrl.pathname.includes(path[i]);
 
       if (pathname === true) {
-        return await api.get("detailInfo", {
+        return await spnApi.get("detailInfo", {
           params: {
             contentId: parsedId,
             contentTypeId: typeNum[i]
@@ -78,7 +78,7 @@ export const detailIntro = async req => {
       const pathname = req._parsedUrl.pathname.includes(path[i]);
 
       if (pathname === true) {
-        return await api.get("detailIntro", {
+        return await spnApi.get("detailIntro", {
           params: {
             contentId: parsedId,
             contentTypeId: typeNum[i]

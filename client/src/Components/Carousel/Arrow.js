@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   top: 200px;
+  z-index: 2;
   position: absolute;
   .icon::before {
     content: "";

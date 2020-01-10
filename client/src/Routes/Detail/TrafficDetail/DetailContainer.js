@@ -5,15 +5,11 @@ import DetailPresenter from "./DetailPresenter";
 export default class extends React.Component {
   constructor(props) {
     super(props);
-    const {
-      location: { pathname }
-    } = props;
     this.state = {
       common: null,
       image: null,
       info: null,
       intro: null,
-      isKor: pathname.includes("/kor/"),
       loading: true
     };
   }
@@ -30,7 +26,7 @@ export default class extends React.Component {
     const {
       location: { pathname }
     } = this.props;
-    console.log(pathname);
+
     await axios(pathname).then(response =>
       this.setState({
         common: response.data.common,
@@ -42,18 +38,10 @@ export default class extends React.Component {
   };
 
   render() {
-    const { common, image, info, intro, loading, isKor } = this.state;
+    const { common, image, info, intro, loading } = this.state;
     console.log(this.state);
-
     return (
-      <DetailPresenter
-        loading={loading}
-        common={common}
-        image={image}
-        info={info}
-        intro={intro}
-        kor={isKor}
-      />
+      <DetailPresenter loading={loading} common={common} image={image} info={info} intro={intro} />
     );
   }
 }

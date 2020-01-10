@@ -1,43 +1,43 @@
 import React from "react";
+import TrafficPresenter from "./TrafficPresenter";
 import axios from "axios";
-import CulturalPresenter from "./CulturalPresenter";
 
 export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cultural: [],
+      traffic: [],
       pager: {}
     };
   }
 
   componentDidMount() {
-    this.getCultural();
+    this.getTraffic();
   }
 
   componentDidUpdate() {
     const params = new URLSearchParams(window.location.search);
     const page = parseInt(params.get("page"));
-    if (this.state.pager.current !== page) this.getCultural();
+    if (this.state.pager.current !== page) this.getTraffic();
   }
 
-  getCultural = async () => {
+  getTraffic = async () => {
     const params = new URLSearchParams(window.location.search);
     const page = parseInt(params.get("page")) || 1;
     const path = this.props.match.path;
 
     if (page !== this.state.pager.currentPage) {
-      const culturalList = await axios(`${path}?page=${page}`);
+      const trafficList = await axios(`${path}?page=${page}`);
 
       this.setState({
-        cultural: culturalList.data.pageOfItems,
-        pager: culturalList.data.pager
+        traffic: trafficList.data.pageOfItems,
+        pager: trafficList.data.pager
       });
     }
   };
 
   render() {
-    console.log(this.state.cultural);
-    return <CulturalPresenter cultural={this.state.cultural} pager={this.state.pager} />;
+    console.log(this.props);
+    return <TrafficPresenter traffic={this.state.traffic} pager={this.state.pager} />;
   }
 }

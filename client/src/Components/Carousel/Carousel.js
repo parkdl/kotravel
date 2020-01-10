@@ -20,7 +20,7 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
     this.prop = {
-      number: 8
+      number: [1, 2, 3, 4, 5, 6, 7, 8]
     };
     this.state = {
       currentImageIndex: 1
@@ -31,7 +31,7 @@ export default class extends React.Component {
   }
 
   previousSlide = () => {
-    const lastIndex = this.prop.number;
+    const lastIndex = this.prop.number.length;
     const { currentImageIndex } = this.state;
     const shouldResetIndex = currentImageIndex === 1;
     const index = shouldResetIndex ? lastIndex : currentImageIndex - 1;
@@ -42,7 +42,7 @@ export default class extends React.Component {
   };
 
   nextSlide = () => {
-    const lastIndex = this.prop.number;
+    const lastIndex = this.prop.number.length;
     const { currentImageIndex } = this.state;
     const shouldResetIndex = currentImageIndex === lastIndex;
     const index = shouldResetIndex ? 1 : currentImageIndex + 1;
@@ -61,7 +61,7 @@ export default class extends React.Component {
       <Container className="carousel">
         <Arrow direction="left" clickFunction={this.previousSlide} icon="&#9664;" />
 
-        <ImageSlide imgNum={this.state.currentImageIndex} />
+        <ImageSlide imgNum={this.state.currentImageIndex} total={this.prop.number} />
 
         <Arrow direction="right" clickFunction={this.nextSlide} icon="&#9654;" />
       </Container>

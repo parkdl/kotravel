@@ -84,7 +84,7 @@ export const Category = ({ pathName }) => {
       return (
         <Container>
           <ItemContainer className="tourist">
-            <SLink to={path[i] === path[0] ? "tourist?page=1" : `${pathName}/tourist?page=1`}>
+            <SLink to={path[i] === path[0] ? "/kor/tourist?page=1" : `${pathName}/tourist?page=1`}>
               <OddTitle>
                 <span className="title">{lang[i][0]}</span>
               </OddTitle>
@@ -94,7 +94,9 @@ export const Category = ({ pathName }) => {
             </SLink>
           </ItemContainer>
           <ItemContainer className="cultural">
-            <SLink to={path[i] === path[0] ? "cultural?page=1" : `${pathName}/cultural?page=1`}>
+            <SLink
+              to={path[i] === path[0] ? "/kor/cultural?page=1" : `${pathName}/cultural?page=1`}
+            >
               <EvenTitle>
                 <span className="title">{lang[i][1]}</span>
               </EvenTitle>
@@ -104,7 +106,9 @@ export const Category = ({ pathName }) => {
             </SLink>
           </ItemContainer>
           <ItemContainer className="festival">
-            <SLink to={path[i] === path[0] ? "festival?page=1" : `${pathName}/festival?page=1`}>
+            <SLink
+              to={path[i] === path[0] ? "/kor/festival?page=1" : `${pathName}/festival?page=1`}
+            >
               <OddTitle>
                 <span className="title">{lang[i][2]}</span>
               </OddTitle>
@@ -117,7 +121,11 @@ export const Category = ({ pathName }) => {
           {lang[i][3] === "여행코스" ? (
             <ItemContainer className="travelCourse">
               <SLink
-                to={path[i] === path[0] ? "travelCourse?page=1" : `${pathName}/travelCourse?page=1`}
+                to={
+                  path[i] === path[0]
+                    ? "/kor/travelCourse?page=1"
+                    : `${pathName}/travelCourse?page=1`
+                }
               >
                 <EvenTitle>
                   <span className="title">{lang[i][3]}</span>
@@ -141,7 +149,7 @@ export const Category = ({ pathName }) => {
           )}
 
           <ItemContainer className="leisure">
-            <SLink to={path[i] === path[0] ? "leisure?page=1" : `${pathName}/leisure?page=1`}>
+            <SLink to={path[i] === path[0] ? "/kor/leisure?page=1" : `${pathName}/leisure?page=1`}>
               <OddTitle>
                 <span className="title">{lang[i][4]}</span>
               </OddTitle>
@@ -151,7 +159,7 @@ export const Category = ({ pathName }) => {
             </SLink>
           </ItemContainer>
           <ItemContainer className="rooms">
-            <SLink to={path[i] === path[0] ? "rooms?page=1" : `${pathName}/rooms?page=1`}>
+            <SLink to={path[i] === path[0] ? "/kor/rooms?page=1" : `${pathName}/rooms?page=1`}>
               <EvenTitle>
                 <span className="title">{lang[i][5]}</span>
               </EvenTitle>
@@ -161,7 +169,9 @@ export const Category = ({ pathName }) => {
             </SLink>
           </ItemContainer>
           <ItemContainer className="shopping">
-            <SLink to={path[i] === path[0] ? "shopping?page=1" : `${pathName}/shopping?page=1`}>
+            <SLink
+              to={path[i] === path[0] ? "/kor/shopping?page=1" : `${pathName}/shopping?page=1`}
+            >
               <OddTitle>
                 <span className="title">{lang[i][6]}</span>
               </OddTitle>
@@ -171,7 +181,7 @@ export const Category = ({ pathName }) => {
             </SLink>
           </ItemContainer>
           <ItemContainer className="food">
-            <SLink to={path[i] === path[0] ? "food?page=1" : `${pathName}/food?page=1`}>
+            <SLink to={path[i] === path[0] ? "/kor/food?page=1" : `${pathName}/food?page=1`}>
               <EvenTitle>
                 <span className="title">{lang[i][7]}</span>
               </EvenTitle>

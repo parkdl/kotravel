@@ -17,20 +17,19 @@ const Page = styled.li``;
 
 const PageItem = styled(Link)``;
 
-const TouristPresenter = ({ tourist, pager, path }) => (
+const TrafficPresenter = ({ traffic, pager }) => (
   <Container>
-    {tourist && tourist.length > 0 && (
-      <Section title="Tourist">
-        {tourist.map(tour => (
+    {traffic && traffic.length > 0 && (
+      <Section title="Traffic">
+        {traffic.map(traff => (
           <Poster
-            key={tour.contentid}
-            id={tour.contentid}
-            imageUrl={tour.firstimage}
-            title={tour.title}
-            addr={tour.addr1}
-            subAddr={tour.addr2}
-            isTourist={true}
-            path={path}
+            key={traff.contentid}
+            id={traff.contentid}
+            imageUrl={traff.firstimage}
+            title={traff.title}
+            addr={traff.addr1}
+            subAddr={traff.addr2}
+            isTraffic={true}
           />
         ))}
       </Section>
@@ -62,4 +61,4 @@ const TouristPresenter = ({ tourist, pager, path }) => (
   </Container>
 );
 
-export default TouristPresenter;
+export default TrafficPresenter;
