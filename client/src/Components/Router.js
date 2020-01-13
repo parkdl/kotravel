@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 import Main from "Routes/Main";
-import Header from "../Components/Header";
+import { Header } from "./Header/Header";
 /*import SearchForm from "../Components/SearchForm";
 import Login from "Routes/Login";
 import Board from "../Components/Board";
@@ -46,7 +46,7 @@ export default () => (
         <Route path="/" exact component={Main} />
 
         {/* category */}
-
+        <Route path="/kor" exact component={Main} />
         <Route path="/kor/tourist" exact component={Tourist} />
         <Route path="/kor/tourist/:id" exact component={TouristDetail} />
         <Route path="/kor/cultural" exact component={Cultural} />

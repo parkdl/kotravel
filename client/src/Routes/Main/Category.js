@@ -56,9 +56,10 @@ const Image = styled.div`
 
 const SLink = styled(Link)``;
 
-const path = ["/", "/eng", "/spn", "/jpn", "/rus", "/fre", "/ger", "/chi"];
+const path = ["/", "/kor", "/eng", "/spn", "/jpn", "/rus", "/fre", "/ger", "/chi"];
 
 const lang = [
+  ["관광", "문화", "행사", "여행코스", "레져", "숙소", "쇼핑", "음식점"],
   ["관광", "문화", "행사", "여행코스", "레져", "숙소", "쇼핑", "음식점"],
   ["Tourist", "Cultural", "Festival", "Traffic", "Leisure", "Rooms", "Shopping", "Food"],
   ["Turístico", "cultural", "festival", "ocio", "habitaciones", "compras", "comida", "tráfico"],

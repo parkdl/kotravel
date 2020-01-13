@@ -15,7 +15,7 @@ export default class extends React.Component {
     const {
       match: { path: pathName }
     } = this.props;
-    console.log(pathName);
+
     return (
       <Container>
         <>
