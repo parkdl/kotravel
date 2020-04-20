@@ -6,11 +6,11 @@ const path = [
   "/tourist/",
   "/cultural/",
   "/festival/",
-  "/travelCourse/",
   "/leisure/",
   "/rooms/",
   "/shopping/",
-  "/food/"
+  "/food/",
+  "/traffic/"
 ];
 
 export const detailCommon = async req => {
