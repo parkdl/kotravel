@@ -1,10 +1,18 @@
 import express from "express";
 import routes from "../routes";
-import { getChiList, getChiDetailAll } from "../controllers/chiController";
+import {
+  getChiList,
+  getChiDetailAll,
+  getChiAreaDatas,
+  getSearchData,
+  getHome
+} from "../controllers/chiController";
 
 const chiRouter = express.Router();
 
-chiRouter.get(routes.home);
+chiRouter.get(routes.home, getHome);
+
+chiRouter.get(routes.searchResult, getSearchData);
 
 chiRouter.get(routes.tourist, getChiList);
 chiRouter.get(routes.touristDetail(), getChiDetailAll);
@@ -29,5 +37,7 @@ chiRouter.get(routes.leisureDetail(), getChiDetailAll);
 
 chiRouter.get(routes.traffic, getChiList);
 chiRouter.get(routes.trafficDetail(), getChiDetailAll);
+
+chiRouter.get(routes.area, getChiAreaDatas);
 
 export default chiRouter;

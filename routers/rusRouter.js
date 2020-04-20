@@ -1,10 +1,18 @@
 import express from "express";
 import routes from "../routes";
-import { getRusList, getRusDetailAll } from "../controllers/rusController";
+import {
+  getRusList,
+  getRusDetailAll,
+  getSearchData,
+  getRusAreaDatas,
+  getHome
+} from "../controllers/rusController";
 
 const rusRouter = express.Router();
 
-rusRouter.get(routes.home);
+rusRouter.get(routes.home, getHome);
+
+rusRouter.get(routes.searchResult, getSearchData);
 
 rusRouter.get(routes.tourist, getRusList);
 rusRouter.get(routes.touristDetail(), getRusDetailAll);
@@ -29,5 +37,7 @@ rusRouter.get(routes.leisureDetail(), getRusDetailAll);
 
 rusRouter.get(routes.traffic, getRusList);
 rusRouter.get(routes.trafficDetail(), getRusDetailAll);
+
+rusRouter.get(routes.area, getRusAreaDatas);
 
 export default rusRouter;

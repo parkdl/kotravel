@@ -1,10 +1,18 @@
 import express from "express";
 import routes from "../routes";
-import { getSpnList, getSpnDetailAll } from "../controllers/spnController";
+import {
+  getSpnList,
+  getSpnDetailAll,
+  getSearchData,
+  getSpnAreaDatas,
+  getHome
+} from "../controllers/spnController";
 
 const spnRouter = express.Router();
 
-spnRouter.get(routes.home);
+spnRouter.get(routes.home, getHome);
+
+spnRouter.get(routes.searchResult, getSearchData);
 
 spnRouter.get(routes.tourist, getSpnList);
 spnRouter.get(routes.touristDetail(), getSpnDetailAll);
@@ -29,5 +37,7 @@ spnRouter.get(routes.leisureDetail(), getSpnDetailAll);
 
 spnRouter.get(routes.traffic, getSpnList);
 spnRouter.get(routes.trafficDetail(), getSpnDetailAll);
+
+spnRouter.get(routes.area, getSpnAreaDatas);
 
 export default spnRouter;

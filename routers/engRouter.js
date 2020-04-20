@@ -1,11 +1,18 @@
 import express from "express";
 import routes from "../routes";
-
-import { getEngList, getEngDetailAll } from "../controllers/engController";
+import {
+  getEngList,
+  getEngDetailAll,
+  getSearchData,
+  getEngAreaDatas,
+  getHome
+} from "../controllers/engController";
 
 const engRouter = express.Router();
 
-engRouter.get(routes.home);
+engRouter.get(routes.home, getHome);
+
+engRouter.get(routes.searchResult, getSearchData);
 
 engRouter.get(routes.tourist, getEngList);
 engRouter.get(routes.touristDetail(), getEngDetailAll);
@@ -30,5 +37,7 @@ engRouter.get(routes.leisureDetail(), getEngDetailAll);
 
 engRouter.get(routes.traffic, getEngList);
 engRouter.get(routes.trafficDetail(), getEngDetailAll);
+
+engRouter.get(routes.area, getEngAreaDatas);
 
 export default engRouter;

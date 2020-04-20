@@ -1,10 +1,18 @@
 import express from "express";
 import routes from "../routes";
-import { getGerList, getGerDetailAll } from "../controllers/gerController";
+import {
+  getGerList,
+  getGerDetailAll,
+  getSearchData,
+  getGerAreaDatas,
+  getHome
+} from "../controllers/gerController";
 
 const gerRouter = express.Router();
 
-gerRouter.get(routes.home);
+gerRouter.get(routes.home, getHome);
+
+gerRouter.get(routes.searchResult, getSearchData);
 
 gerRouter.get(routes.tourist, getGerList);
 gerRouter.get(routes.touristDetail(), getGerDetailAll);
@@ -29,5 +37,7 @@ gerRouter.get(routes.leisureDetail(), getGerDetailAll);
 
 gerRouter.get(routes.traffic, getGerList);
 gerRouter.get(routes.trafficDetail(), getGerDetailAll);
+
+gerRouter.get(routes.area, getGerAreaDatas);
 
 export default gerRouter;

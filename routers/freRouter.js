@@ -1,10 +1,18 @@
 import express from "express";
 import routes from "../routes";
-import { getFreList, getFreDetailAll } from "../controllers/freController";
+import {
+  getFreList,
+  getFreDetailAll,
+  getSearchData,
+  getFreAreaDatas,
+  getHome
+} from "../controllers/freController";
 
 const freRouter = express.Router();
 
-freRouter.get(routes.home);
+freRouter.get(routes.home, getHome);
+
+freRouter.get(routes.searchResult, getSearchData);
 
 freRouter.get(routes.tourist, getFreList);
 freRouter.get(routes.touristDetail(), getFreDetailAll);
@@ -29,5 +37,7 @@ freRouter.get(routes.leisureDetail(), getFreDetailAll);
 
 freRouter.get(routes.traffic, getFreList);
 freRouter.get(routes.trafficDetail(), getFreDetailAll);
+
+freRouter.get(routes.area, getFreAreaDatas);
 
 export default freRouter;

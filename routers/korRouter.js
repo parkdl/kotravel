@@ -1,10 +1,18 @@
 import express from "express";
 import routes from "../routes";
-import { getBaseList, getDetailAll } from "../controllers/listController";
+import {
+  getBaseList,
+  getDetailAll,
+  getSearchData,
+  getAreaDatas,
+  getHome
+} from "../controllers/korController";
 
 const korRouter = express.Router();
 
-korRouter.get(routes.home);
+korRouter.get(routes.home, getHome);
+
+korRouter.get(routes.searchResult, getSearchData);
 
 korRouter.get(routes.tourist, getBaseList);
 korRouter.get(routes.touristDetail(), getDetailAll);
@@ -29,5 +37,7 @@ korRouter.get(routes.travelCourseDetail(), getDetailAll);
 
 korRouter.get(routes.leisure, getBaseList);
 korRouter.get(routes.leisureDetail(), getDetailAll);
+
+korRouter.get(routes.area, getAreaDatas);
 
 export default korRouter;

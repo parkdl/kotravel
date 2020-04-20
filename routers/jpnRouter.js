@@ -1,10 +1,18 @@
 import express from "express";
 import routes from "../routes";
-import { getJpnList, getJpnDetailAll } from "../controllers/jpnController";
+import {
+  getJpnList,
+  getJpnDetailAll,
+  getSearchData,
+  getJpnAreaDatas,
+  getHome
+} from "../controllers/jpnController";
 
 const jpnRouter = express.Router();
 
-jpnRouter.get(routes.home);
+jpnRouter.get(routes.home, getHome);
+
+jpnRouter.get(routes.searchResult, getSearchData);
 
 jpnRouter.get(routes.tourist, getJpnList);
 jpnRouter.get(routes.touristDetail(), getJpnDetailAll);
@@ -29,5 +37,7 @@ jpnRouter.get(routes.leisureDetail(), getJpnDetailAll);
 
 jpnRouter.get(routes.traffic, getJpnList);
 jpnRouter.get(routes.trafficDetail(), getJpnDetailAll);
+
+jpnRouter.get(routes.area, getJpnAreaDatas);
 
 export default jpnRouter;
