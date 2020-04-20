@@ -1,46 +1,46 @@
 import axios from "axios";
-import { jpnApi } from "../api";
+import { api } from "../api";
 import { pagination } from "../middleWare";
-import { detailCommon, detailImage, detailIntro, detailInfo } from "../assets/detail/jpnDetailData";
-import { mulType, categoryName, areaName, areaCode, searchResult } from "../assets/Variable";
+import { detailCommon, detailImage, detailIntro, detailInfo } from "../assets/detail/detailData";
+import { korType, categoryName, areaName, areaCode, searchResult } from "../assets/Variable";
 
 export const getHome = (req, res) => {
-  const areaArray = areaName.jpn;
-  const categoryArray = categoryName.jpn;
+  const areaArray = areaName.kor;
+  const categoryArray = categoryName.kor;
 
-  return res.send({ areaCode, mulType, areaArray, categoryArray });
+  return res.send({ areaCode, korType, areaArray, categoryArray });
 };
 
-export const getJpnList = async (req, res) => {
+export const getBaseList = async (req, res) => {
   const pathname = req._parsedUrl.pathname;
   const page = parseInt(req.query.page);
   const area = parseInt(req.query.area) || null;
 
-  for (var i = 0; i < mulType.path.length; i++) {
-    if (pathname.includes(mulType.path[i])) {
-      await jpnApi
+  for (var i = 0; i < korType.path.length; i++) {
+    if (pathname.includes(korType.path[i])) {
+      await api
         .get("areaBasedList", {
           params: {
-            contentTypeId: mulType.typeNum[i],
+            contentTypeId: korType.typeNum[i],
             arrange: "P",
-            pageNo: page,
             areaCode: area,
+            pageNo: page,
             numOfRows: 12,
           },
         })
         .then((response) => {
-          const jpnBase = response.data.response.body.items.item;
+          const baseList = response.data.response.body.items.item;
           const totalCount = response.data.response.body.totalCount;
           const pageSize = response.data.response.body.numOfRows;
           const pager = pagination(totalCount, page, pageSize);
-          const pageOfItems = jpnBase.slice(0, 12);
+          const pageOfItems = baseList.slice(0, 12);
 
-          const lang = "/jpn";
+          const lang = "/kor";
           const addedAreaCode = area;
-          const title = categoryName.jpn[i];
-          const areaArray = areaName.jpn;
-          const categoryArray = categoryName.jpn;
-          const typeArray = mulType;
+          const title = categoryName.kor[i];
+          const areaArray = areaName.kor;
+          const categoryArray = categoryName.kor;
+          const typeArray = korType;
           const allItems = {
             lang,
             addedAreaCode,
@@ -57,14 +57,14 @@ export const getJpnList = async (req, res) => {
   }
 };
 
-export const getJpnAreaDatas = async (req, res) => {
+export const getAreaDatas = async (req, res) => {
   const area = parseInt(req.query.area);
   const page = parseInt(req.query.page);
   const type = parseInt(req.query.type) || null;
 
   for (var i = 0; i < areaCode.length; i++) {
     if (area === areaCode[i]) {
-      await jpnApi
+      await api
         .get("areaBasedList", {
           params: {
             contentTypeId: type,
@@ -78,15 +78,17 @@ export const getJpnAreaDatas = async (req, res) => {
           const baseList = response.data.response.body.items.item;
           const totalCount = response.data.response.body.totalCount;
           const pageSize = response.data.response.body.numOfRows;
+
           const pager = pagination(totalCount, page, pageSize);
+
           const pageOfItems = baseList.slice(0, 12);
 
-          const lang = "/jpn";
+          const lang = "/kor";
           const addedAreaCode = area;
-          const title = areaName.jpn[i];
-          const areaArray = areaName.jpn;
-          const categoryArray = categoryName.jpn;
-          const typeArray = mulType;
+          const title = areaName.kor[i];
+          const areaArray = areaName.kor;
+          const categoryArray = categoryName.kor;
+          const typeArray = korType;
           const allItems = {
             lang,
             addedAreaCode,
@@ -103,11 +105,11 @@ export const getJpnAreaDatas = async (req, res) => {
   }
 };
 
-export const getJpnDetailAll = (req, res) => {
+export const getDetailAll = (req, res) => {
   const pathname = req._parsedUrl.pathname;
 
-  for (var i = 0; i < mulType.path.length; i++) {
-    const path = mulType.path[i];
+  for (var i = 0; i < korType.path.length; i++) {
+    const path = korType.path[i];
     if (pathname.includes(path)) {
       axios
         .all([
@@ -123,11 +125,11 @@ export const getJpnDetailAll = (req, res) => {
             const info = infoRes.data.response.body.items.item;
             const intro = introRes.data.response.body.items.item;
 
-            const lang = "/jpn";
+            const lang = "/kor";
             const typePath = path;
-            const areaArray = areaName.jpn;
-            const categoryArray = categoryName.jpn;
-            const typeArray = mulType;
+            const areaArray = areaName.kor;
+            const categoryArray = categoryName.kor;
+            const typeArray = korType;
             const weather = areaName.weatherArea;
             const allItems = {
               lang,
@@ -153,7 +155,7 @@ export const getSearchData = async (req, res) => {
   const type = parseInt(req.query.type) || null;
 
   try {
-    await jpnApi
+    await api
       .get("searchKeyword", {
         params: {
           keyword: keyword,
@@ -171,13 +173,13 @@ export const getSearchData = async (req, res) => {
         const pager = pagination(totalCount, page, pageSize);
         const pageOfItems = searchData.slice(0, 12);
 
-        const lang = "/jpn";
-        const title = searchResult.jpn;
+        const lang = "/kor";
+        const title = searchResult.kor;
         const areaValue = area;
         const typeCode = type;
-        const areaArray = areaName.jpn;
-        const categoryArray = categoryName.jpn;
-        const typeArray = mulType;
+        const areaArray = areaName.kor;
+        const categoryArray = categoryName.kor;
+        const typeArray = korType;
 
         const allItems = {
           lang,
@@ -195,13 +197,13 @@ export const getSearchData = async (req, res) => {
   } catch (e) {
     const pager = { current: 1 };
 
-    const lang = "/jpn";
-    const title = searchResult.jpn;
+    const lang = "/kor";
+    const title = searchResult.kor;
     const areaValue = area;
     const typeCode = type;
-    const areaArray = areaName.jpn;
-    const categoryArray = categoryName.jpn;
-    const typeArray = mulType;
+    const areaArray = areaName.kor;
+    const categoryArray = categoryName.kor;
+    const typeArray = korType;
 
     const allItems = {
       lang,
